@@ -4,7 +4,7 @@ Skrypt umożliwiający sychnronizację e-dziennika librus z kalendarzem google.
 ## Wymagania
 - [librus-api-python](https://github.com/synnek1337/librus-api-python)
 - [requests-html](https://html.python-requests.org)
-- [python-google-calendar-api](https://pypi.org/project/python-google-calendar-api/)
+- [google-api-python-client](https://pypi.org/project/google-api-python-client/)
 
 ## Instalacja
 ```python setup.py install```
