@@ -54,10 +54,10 @@ class Librus(LibrusSession):
         end_hour = lesson[1][0]
         end_minute = lesson[1][1]
 
-        start_date = datetime.datetime(
-            year, month, day, start_hour, start_minute).isoformat()
-        end_date = datetime.datetime(
-            year, month, day, end_hour, end_minute).isoformat()
+        start_date = (datetime.datetime(
+            year, month, day, start_hour, start_minute).isoformat() + '+01:00')
+        end_date = (datetime.datetime(
+            year, month, day, end_hour, end_minute).isoformat() + '+01:00')
 
         return {
             'summary': f"{category} {subject}",
@@ -95,6 +95,7 @@ class Calendar():
 if __name__ == "__main__":
     l = Librus(Cfg().librus.login, Cfg().librus.password)
     cal = Calendar()
-    # TODO: Checking if exists before adding to calendar
     for exam in l.exams:
-        cal.add_exam(exam)
+        if not cal.service.events().list(calendarId='primary',
+                                         timeMin=exam['start']['dateTime'], timeMax=exam['end']['dateTime']).execute()['items']:
+            cal.add_exam(exam)
