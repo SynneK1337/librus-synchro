@@ -29,6 +29,10 @@ Skrypt umożliwiający sychnronizację e-dziennika librus z kalendarzem google.
 - Otwórz plik ```config.cfg``` w swoim ulubionym edytorze
 - Reszty chyba nie muszę tłumaczyć :)
 
+### Konfiguracja godzin lekcyjnych
+- Otwórz plik ```timetable.json``` w swoim ulubionym edytorze
+- Edytuj godziny rozpoczęcia i zakończenia lekcji **Pamiętając o wstawianiu spacji zamiast dwukropka**
+
 ### **Teraz wystarczy ```python main.py```, jeśli chcesz, możesz dodać skrypt do crona**
 ## Podziękowania
 - [findepi](https://github.com/findepi) za stworzenie scrappera do librusa
