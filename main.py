@@ -30,24 +30,38 @@ class Librus(LibrusSession):
                     exam.category,
                     exam.subject,
                     exam.specification,
+                    exam.interval,
                     exam.lesson))
 
-    def convert_to_hour(self, lesson):  # eg. Lesson no. 1 - 7:30 - 8:25
-        with open("timetable.json", "r") as f:
-            timetable = json.load(f)
-            start = [int(timetable["start"][lesson].split()[0]),
-                     int(timetable["start"][lesson].split()[1])]
-            end = [int(timetable["end"][lesson].split()[0]),
-                   int(timetable["end"][lesson].split()[1])]
-            return [start, end]
+    def convert_to_hour(self, interval, lesson):  # eg. Lesson no. 1 - 7:30 - 8:25
+        if interval is None:
+            with open("timetable.json", "r") as f:
+                timetable = json.load(f)
+                start = [int(timetable["start"][lesson].split()[0]),
+                        int(timetable["start"][lesson].split()[1])]
+                end = [int(timetable["end"][lesson].split()[0]),
+                    int(timetable["end"][lesson].split()[1])]
+                return [start, end]
+        else:
+            interval_components = interval.split(" - ")
+            start = interval_components[0].split(":")
+            end = interval_components[1].split(":")
+            start_hour = int(start[0])
+            start_minute = int(start[1])
 
-    def generate_body(self, date, category, subject, specification, lesson):
+            end_hour = int(end[0])
+            end_minute = int(end[1])
+            return [[start_hour, start_minute], [end_hour, end_minute]]
+
+
+
+    def generate_body(self, date, category, subject, specification, interval, lesson):
         date = date.replace('-', ' ').split()
         year = int(date[0])
         month = int(date[1])
         day = int(date[2])
-
-        lesson = self.convert_to_hour(lesson)
+        
+        lesson = self.convert_to_hour(interval, lesson)
         start_hour = lesson[0][0]
         start_minute = lesson[0][1]
 
