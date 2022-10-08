@@ -33,6 +33,10 @@ Skrypt umożliwiający sychnronizację e-dziennika librus z kalendarzem google.
 - Otwórz plik ```timetable.json``` w swoim ulubionym edytorze
 - Edytuj godziny rozpoczęcia i zakończenia lekcji **Pamiętając o wstawianiu spacji zamiast dwukropka**
 
+### Dodatkowe dane:
+- upewnij się że masz dostęp do google api: [api](https://console.cloud.google.com/apis/library/calendar-json.googleapis.com)
+- czasami trzeba poczekać do godziny po dodaniu api/nowego klucza (kalendarza/ID klienta OAuth2)
+
 ### **Teraz wystarczy ```python main.py```, jeśli chcesz, możesz dodać skrypt do crona**
 ## Podziękowania
 - [findepi](https://github.com/findepi) za stworzenie scrappera do librusa
